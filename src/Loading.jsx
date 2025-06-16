@@ -1,5 +1,5 @@
 const Loading = () => {
-  return <div>{console.log('Loading')}</div>
+  return <div className='loading'></div>
 }
 
-export default Loadng
+export default Loading
