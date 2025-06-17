@@ -1,7 +1,6 @@
 const url = 'https://www.course-api.com/react-tours-project'
 
 import { useEffect, useState } from 'react'
-import Tour from './Tour'
 import Tours from './Tours'
 import Loading from './Loading'
 
@@ -14,7 +13,7 @@ const App = () => {
     setTours(newTours)
   }
 
-  const fetchTour = async () => {
+  const fetchTours = async () => {
     setIsLoading(true)
     try {
       const resp = await fetch(url)
@@ -27,13 +26,31 @@ const App = () => {
   }
 
   useEffect(() => {
-    fetchTour()
+    fetchTours()
   }, [])
 
   if (isLoading) {
     return (
       <main>
         <Loading />
+      </main>
+    )
+  }
+
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className='title'>
+          <h2>no tours left</h2>
+          <button
+            type='button'
+            style={{ marginTop: '2rem' }}
+            className='btn'
+            onClick={() => fetchTours()}
+          >
+            refresh
+          </button>
+        </div>
       </main>
     )
   }
